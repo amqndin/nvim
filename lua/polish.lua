@@ -18,3 +18,5 @@ vim.filetype.add {
     ["~/%.config/foo/.*"] = "fooscript",
   },
 }
+
+vim.g.neovide_no_idle = true

@@ -10,6 +10,5 @@ return {
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.recipes.heirline-nvchad-statusline" },
   { import = "astrocommunity.completion.codeium-vim" },
-  { import = "astrocommunity.motion.hop-nvim" },
   { import = "astrocommunity.recipes.vscode" },
 }

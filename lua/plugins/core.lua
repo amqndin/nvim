@@ -8,6 +8,10 @@ local minecraft_icon = {
 ---@type LazySpec
 return {
   {
+    'folke/which-key.nvim',
+    enabled = false,
+  },
+  {
     "Shatur/neovim-session-manager",
     event = "BufWritePost",
     cmd = "SessionManager",
