@@ -19,12 +19,13 @@ return {
           window_picker = true,
           which_key = true,
           indent_blankline = { enabled = true },
-          telescope = { enabled = true },
+          -- telescope = { enabled = true, style = "classic" },
           noice = true,
           lsp_trouble = true,
         },
       }
     end,
+    lazy = false,
   },
   { "AstroNvim/astrotheme" },
 }

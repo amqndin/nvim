@@ -11,5 +11,5 @@ return {
   { import = "astrocommunity.recipes.heirline-nvchad-statusline" },
   { import = "astrocommunity.completion.codeium-vim" },
   { import = "astrocommunity.motion.hop-nvim" },
-  { import = "astrocommunity.colorscheme.catppuccin" },
+  { import = "astrocommunity.recipes.vscode" },
 }

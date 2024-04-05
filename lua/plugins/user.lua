@@ -29,13 +29,12 @@ return {
         on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
       }
     end,
-    lazy = true,
+    event = "BufEnter",
   },
   {
     "CrystalAlpha358/vim-mcfunction",
     event = "BufRead",
     ft = { "mcfunction", "bolt" },
-    lazy = true,
   },
   {
     "folke/noice.nvim",

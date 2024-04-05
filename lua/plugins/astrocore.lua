@@ -1,6 +1,10 @@
 -- AstroCore provides a central place to modify mappings, vim options, autocommands, and more!
 -- Configuration documentation can be found with `:h astrocore`
-
+local utils = require "astroui"
+local get_icon = utils.get_icon
+local sections = {
+  s = { desc = get_icon("Session", 1, true) .. "Session" },
+}
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
@@ -51,6 +55,15 @@ return {
         ["<esc><esc>"] = { "<c-\\><c-n>", desc = "Enter normal mode" },
       },
       n = {
+        ["<leader>s"] = sections.s,
+        ["<leader>sl"] = { "<cmd>SessionManager! load_last_session<cr>", desc = "Load last session" },
+        ["<leader>ss"] = { "<cmd>SessionManager! save_current_session<cr>", desc = "Save this session" },
+        ["<leader>sd"] = { "<cmd>SessionManager! delete_session<cr>", desc = "Delete session" },
+        ["<leader>sf"] = { "<cmd>SessionManager! load_session<cr>", desc = "Search sessions" },
+        ["<leader>s."] = {
+          "<cmd>SessionManager! load_current_dir_session<cr>",
+          desc = "Load current directory session",
+        },
         -- second key is the lefthand side of the map
         ["<Leader>r"] = { desc = "Run this file as ..." },
         ["<Leader>rp"] = { '<cmd>!python "%"<CR>', desc = "Python" },
@@ -63,7 +76,7 @@ return {
         ["s"] = { "<cmd>HopChar1<CR>", desc = "Hop to char" },
         ["S"] = { "<cmd>HopLine<CR>", desc = "Hop to line" },
 
-        ["<C-BS>"] = { "<c-w>", desc = "Delete previous word" },
+        ["<C-BS>"] = { "<C-w>", desc = "Delete previous word" },
 
         -- navigate buffer tabs with `H` and `L`
         L = {

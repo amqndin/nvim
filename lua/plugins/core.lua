@@ -8,6 +8,12 @@ local minecraft_icon = {
 ---@type LazySpec
 return {
   {
+    "Shatur/neovim-session-manager",
+    event = "BufWritePost",
+    cmd = "SessionManager",
+    enabled = vim.g.resession_enabled ~= false,
+  },
+  {
     "numToStr/Comment.nvim",
     config = function()
       local ft = require "Comment.ft"
@@ -59,5 +65,9 @@ return {
         mcfunction = minecraft_icon,
       },
     },
+  },
+  {
+    "stevearc/resession.nvim",
+    enabled = false,
   },
 }
