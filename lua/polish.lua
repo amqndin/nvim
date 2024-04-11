@@ -19,4 +19,4 @@ vim.filetype.add {
   },
 }
 
-vim.g.neovide_no_idle = true
+-- vim.g.neovide_no_idle = true

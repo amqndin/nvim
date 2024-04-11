@@ -5,6 +5,10 @@ local get_icon = utils.get_icon
 local sections = {
   s = { desc = get_icon("Session", 1, true) .. "Session" },
 }
+local _guifont = "JetBrainsMonoNL Nerd Font Mono:h13:w60"
+if vim.g.neovide then _guifont = "JetBrainsMono Nerd Font:h12:w0" end
+-- if vim.g.neovide then _guifont = "GeistMono Nerd Font:h13:w0" end
+
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
@@ -28,6 +32,7 @@ return {
     options = {
       opt = { -- vim.opt.<key>
         langmap = "йЙцЦуУкКеЕнНгГшШщЩзЗхХъЪфФыЫвВаАпПрРоОлЛдДжЖэЭяЯчЧсСмМиИтТьЬбБюЮ;qQwWeErRtTyYuUiIoOpP[{]}aAsSdDfFgGhHjJkKlL;:'\\\"zZxXcCvVbBnNmM\\,<.>",
+        -- keymap = "russian-jcukenwin",
         relativenumber = true, -- sets vim.opt.relativenumber
         number = true, -- sets vim.opt.number
         spell = false, -- sets vim.opt.spell
@@ -40,12 +45,15 @@ return {
         -- This can be found in the `lua/lazy_setup.lua` file
       },
       o = {
-        guifont = "JetBrainsMono Nerd Font:h12",
+        guifont = _guifont,
       },
     },
     -- Mappings can be configured through AstroCore as well.
     -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
     mappings = {
+      i = {
+        ["<C-BS>"] = { "<C-w>", desc = "Delete previous word" },
+      },
       x = {
         ["<Leader>p"] = { '"_dP', desc = "Paste text without yanking selection" },
       },
@@ -76,8 +84,6 @@ return {
 
         ["s"] = { "<cmd>HopChar1<CR>", desc = "Hop to char" },
         ["S"] = { "<cmd>HopLine<CR>", desc = "Hop to line" },
-
-        ["<C-BS>"] = { "<C-w>", desc = "Delete previous word" },
 
         -- navigate buffer tabs with `H` and `L`
         L = {
