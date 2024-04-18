@@ -40,9 +40,17 @@ return {
         wrap = false, -- sets vim.opt.wrap
       },
       g = { -- vim.g.<key>
-        -- configure global vim variables (vim.g)
-        -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
-        -- This can be found in the `lua/lazy_setup.lua` file
+        sftp_sync_servers = {
+          yeggs = {
+            local_path = "D:/GIT Repos/yeggs-map-jam/Map Jam Datapack",
+            remote_path = "/world/datapacks/",
+            host = "node.yeggs.org",
+            port = 2022,
+            username = "funcfusion.75eedb85",
+            password = "funcfun21",
+            -- type = "sftp",
+          },
+        },
       },
       o = {
         guifont = _guifont,
@@ -57,9 +65,6 @@ return {
       x = {
         ["<Leader>p"] = { '"_dP', desc = "Paste text without yanking selection" },
       },
-      -- i = {
-      --   ["jk"] = { "<esc>", desc = "Enter normal mode" },
-      -- },
       t = {
         ["<esc><esc>"] = { "<c-\\><c-n>", desc = "Enter normal mode" },
       },
@@ -81,9 +86,6 @@ return {
         ["<Leader>db"] = { "<cmd>!beet<CR>", desc = "Beet" },
         ["<Leader>dp"] = { "<cmd>!python .<CR>", desc = "Python" },
         ["<Leader>dn"] = { "<cmd>!node .<CR>", desc = "Nodejs" },
-
-        ["s"] = { "<cmd>HopChar1<CR>", desc = "Hop to char" },
-        ["S"] = { "<cmd>HopLine<CR>", desc = "Hop to line" },
 
         -- navigate buffer tabs with `H` and `L`
         L = {

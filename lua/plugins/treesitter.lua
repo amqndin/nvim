@@ -16,7 +16,7 @@ return {
     }
 
     vim.treesitter.language.register("javascript", "jmc")
-    vim.treesitter.language.register("javascript", "mc")
+    vim.treesitter.language.register("c", "hjmc")
     vim.treesitter.language.register("python", "bolt")
   end,
 }

@@ -5,11 +5,12 @@
 -- Set up custom filetypes
 vim.filetype.add {
   extension = {
-    mcfunction = "mcfunction",
+    mcfunction = "mcf",
     foo = "fooscript",
     mcmeta = "json",
     bolt = "bolt",
     jmc = "jmc",
+    hjmc = "hjmc",
   },
   filename = {
     ["Foofile"] = "fooscript",
@@ -19,4 +20,4 @@ vim.filetype.add {
   },
 }
 
--- vim.g.neovide_no_idle = true
+vim.g.neovide_no_idle = true

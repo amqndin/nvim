@@ -3,12 +3,9 @@ return {
   { "ThePrimeagen/vim-be-good", event = "VeryLazy" },
   {
     "echasnovski/mini.clue",
-    config = function()
-      local miniclue = require "mini.clue"
-      miniclue.setup {
-        window = { delay = 500 },
-      }
-    end,
+    opts = {
+      window = { delay = 400 },
+    },
   },
   {
     "CrystalAlpha358/vim-mcfunction",
@@ -16,9 +13,21 @@ return {
   },
   {
     "folke/noice.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
     config = function()
       require("noice").setup {
         lsp = {
+          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+            ["config.lsp.hover.enabled"] = false,
+            ["config.lsp.signature.enabled"] = false,
+          },
           hover = { enabled = false },
           signature = { enabled = false },
           progress = { enabled = false },
@@ -26,13 +35,15 @@ return {
         messages = { enabled = false },
         presets = {
           bottom_search = false, -- use a classic bottom cmdline for search
+          command_palette = true, -- position the cmdline and popupmenu together
+          long_message_to_split = true, -- long messages will be sent to a split
         },
       }
     end,
   },
   {
     "phaazon/hop.nvim",
-    config = function() require("hop").setup { keys = "etovxqpdygfblzhckisuran" } end,
+    opts = { keys = "etovxqpdygfblzhckisuran" },
   },
   {
     "Exafunction/codeium.vim",
