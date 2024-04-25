@@ -1,59 +1,130 @@
+local utils = require "astroui"
+local get_icon = utils.get_icon
+local hop_mappings = {
+  ["s"] = { "<cmd>HopChar1<CR>", desc = "Hop to a specific character" },
+  ["<S-s>"] = { "<cmd>HopLine<CR>", desc = "Hop to a specific line" },
+}
+local sections = {
+  s = { desc = get_icon("Session", 1, true) .. "Session" },
+}
+
 ---@type LazySpec
 return {
-  { "ThePrimeagen/vim-be-good", event = "VeryLazy" },
   {
-    "echasnovski/mini.clue",
+    "catppuccin",
+    ---@type CatppuccinOptions
     opts = {
-      window = { delay = 400 },
+      term_colors = true,
     },
   },
+  { "ThePrimeagen/vim-be-good", event = "VeryLazy" },
   {
     "CrystalAlpha358/vim-mcfunction",
     ft = { "mcfunction", "bolt" },
   },
   {
-    "folke/noice.nvim",
+    "Shatur/neovim-session-manager",
     dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    },
-    config = function()
-      require("noice").setup {
-        lsp = {
-          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-          override = {
-            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-            ["vim.lsp.util.stylize_markdown"] = true,
-            ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
-            ["config.lsp.hover.enabled"] = false,
-            ["config.lsp.signature.enabled"] = false,
+      {
+        "astronvim/astrocore",
+        ---@type AstroCoreOpts
+        opts = {
+          mappings = {
+            n = {
+              ["<Leader>s"] = sections.s,
+              ["<Leader>sl"] = { "<cmd>SessionManager! load_last_session<cr>", desc = "Load last session" },
+              ["<Leader>ss"] = { "<cmd>SessionManager! save_current_session<cr>", desc = "Save this session" },
+              ["<Leader>sd"] = { "<cmd>SessionManager! delete_session<cr>", desc = "Delete session" },
+              ["<Leader>sf"] = { "<cmd>SessionManager! load_session<cr>", desc = "Search sessions" },
+              ["<Leader>s."] = {
+                "<cmd>SessionManager! load_current_dir_session<cr>",
+                desc = "Load current directory session",
+              },
+            },
           },
-          hover = { enabled = false },
-          signature = { enabled = false },
-          progress = { enabled = false },
         },
-        messages = { enabled = false },
-        presets = {
-          bottom_search = false, -- use a classic bottom cmdline for search
-          command_palette = true, -- position the cmdline and popupmenu together
-          long_message_to_split = true, -- long messages will be sent to a split
-        },
-      }
-    end,
+      },
+    },
+    event = "BufWritePost",
+    cmd = "SessionManager",
+    enabled = vim.g.resession_enabled ~= false,
   },
   {
-    "phaazon/hop.nvim",
+    "smoka7/hop.nvim",
+    dependencies = {
+      {
+        "AstroNvim/astrocore",
+        ---@type AstroCoreOpts
+        opts = {
+          mappings = {
+            v = hop_mappings,
+            n = hop_mappings,
+            o = hop_mappings,
+          },
+        },
+      },
+    },
     opts = { keys = "etovxqpdygfblzhckisuran" },
   },
   {
     "Exafunction/codeium.vim",
-    config = function()
-      vim.keymap.set("i", "<A-y>", function() return vim.fn["codeium#Accept"]() end, { expr = true })
-      vim.keymap.set("i", "<A-]>", function() return vim.fn["codeium#CycleCompletions"](1) end, { expr = true })
-      vim.keymap.set("i", "<A-[>", function() return vim.fn["codeium#CycleCompletions"](-1) end, { expr = true })
-      vim.keymap.set("i", "<C-;>", function() return vim.fn["codeium#Clear"]() end, { expr = true })
-      vim.keymap.set("n", "<A-h>", function() return vim.fn["codeium#Chat"]() end, { expr = true })
-      vim.keymap.set("i", "<A-;>", function() return vim.fn["codeium#Complete"]() end, { expr = true })
-    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+      {
+        "AstroNvim/astrocore",
+        ---@type AstroCoreOpts
+        opts = {
+          mappings = {
+            n = {
+              ["<A-h>"] = { function() return vim.fn["codeium#Chat"]() end, desc = "Codeium Chat" },
+            },
+            i = {
+              ["<A-y>"] = { function() return vim.fn["codeium#Accept"]() end, expr = true, desc = "Codeium Accept" },
+              ["<C-;>"] = { function() return vim.fn["codeium#Clear"]() end, desc = "Codeium Clear" },
+              ["<A-;>"] = { function() return vim.fn["codeium#Complete"]() end, desc = "Codeium Complete" },
+            },
+          },
+        },
+      },
+    },
+    config = function() vim.g.codeium_disable_bindings = 1 end,
+    event = "BufEnter",
+  },
+  {
+    "theprimeagen/harpoon",
+    dependencies = {
+      {
+        "AstroNvim/astrocore",
+        ---@type AstroCoreOpts
+        opts = {
+          mappings = {
+            n = {
+              ["<a-u>"] = { "<cmd>lua require('harpoon'):list():select(1)<CR>" },
+              ["<a-i>"] = { "<cmd>lua require('harpoon'):list():select(2)<CR>" },
+              ["<a-o>"] = { "<cmd>lua require('harpoon'):list():select(3)<CR>" },
+              ["<a-p>"] = { "<cmd>lua require('harpoon'):list():select(4)<CR>" },
+            },
+          },
+        },
+      },
+    },
+    opts = {},
+  },
+  {
+    "Zeioth/compiler.nvim",
+    dependencies = {
+      {
+        "astronvim/astrocore",
+        ---@type AstroCoreOpts
+        opts = {
+          mappings = {
+            n = {
+              ["<Leader>r"] = { "<cmd>CompilerOpen<cr>", desc = "Compile" },
+            },
+          },
+        },
+      },
+    },
   },
 }

@@ -8,16 +8,6 @@ local minecraft_icon = {
 ---@type LazySpec
 return {
   {
-    'folke/which-key.nvim',
-    enabled = false,
-  },
-  {
-    "Shatur/neovim-session-manager",
-    event = "BufWritePost",
-    cmd = "SessionManager",
-    enabled = vim.g.resession_enabled ~= false,
-  },
-  {
     "numToStr/Comment.nvim",
     config = function()
       local ft = require "Comment.ft"
@@ -49,6 +39,9 @@ return {
   {
     "goolord/alpha-nvim",
     opts = function(_, opts)
+      local utils = require "astroui"
+      local get_icon = utils.get_icon
+      local dashboard = require "alpha.themes.dashboard"
       -- customize the dashboard header
       opts.section.header.val = {
         [[                               __                ]],
@@ -57,6 +50,14 @@ return {
         [[/\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
         [[\ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
         [[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
+      }
+      dashboard.section.buttons.val = {
+        dashboard.button("LDR n  ", get_icon("FileNew", 2, true) .. "New File  "),
+        dashboard.button("LDR f f", get_icon("Search", 2, true) .. "Find File  "),
+        dashboard.button("LDR f o", get_icon("DefaultFile", 2, true) .. "Recents  "),
+        dashboard.button("LDR f w", get_icon("WordFile", 2, true) .. "Find Word  "),
+        dashboard.button("LDR f '", get_icon("Bookmarks", 2, true) .. "Bookmarks  "),
+        dashboard.button("LDR s l", get_icon("Refresh", 2, true) .. "Last Session  "),
       }
       return opts
     end,
