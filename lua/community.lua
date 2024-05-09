@@ -10,7 +10,7 @@ return {
   -- languages support
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.go" },
-  { import = "astrocommunity.pack.python" },
+  -- { import = "astrocommunity.pack.python" },
 
   -- ui / small features
   { import = "astrocommunity.colorscheme.catppuccin" },

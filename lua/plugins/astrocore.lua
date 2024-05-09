@@ -3,6 +3,16 @@
 local _guifont = "JetBrainsMonoNL Nerd Font Mono:h13:w60"
 if vim.g.neovide then _guifont = "JetBrainsMono Nerd Font:h12:w0" end
 
+function ToggleTermInsert()
+  if vim.bo.buftype == "terminal" then
+    if vim.fn.mode() == "n" then
+      vim.cmd "startinsert"
+    else
+      vim.cmd "stopinsert"
+    end
+  end
+end
+
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
@@ -54,9 +64,11 @@ return {
         ["<Leader>p"] = { '"_dP', desc = "Paste text without yanking selection" },
       },
       t = {
-        ["<esc><esc>"] = { "<c-\\><c-n>", desc = "Enter normal mode" },
+        -- ["<S-Space>"] = { "<c-\\><c-n>", desc = "Enter normal mode" },
+        ["<S-Space>"] = { function() ToggleTermInsert() end, desc = "Toggle terminal insert mode" },
       },
       n = {
+        ["<S-Space>"] = { function() ToggleTermInsert() end, desc = "Toggle terminal insert mode" },
         ["{"] = { "{zz" },
         ["}"] = { "}zz" },
         ["<c-d>"] = { "<c-d>zz" },

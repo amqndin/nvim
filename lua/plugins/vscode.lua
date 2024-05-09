@@ -41,6 +41,20 @@ return {
           ["<Leader>c"] = "<CMD>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>",
           ["H"] = "<CMD>call VSCodeNotify('workbench.action.previousEditor')<CR>",
           ["L"] = "<CMD>call VSCodeNotify('workbench.action.nextEditor')<CR>",
+          ["<Leader>q"] = "<CMD>call VSCodeNotify('workbench.action.closeWindow')<CR>",
+          ["s"] = "<CMD>call VSCodeNotify('leap.findForward')<CR>",
+          ["S"] = "<CMD>call VSCodeNotify('leap.findBackward')<CR>",
+        },
+        i = {
+          ["jk"] = "<esc>",
+        },
+        o = {
+          ["s"] = "<CMD>call VSCodeNotify('leap.findForward')<CR>",
+          ["S"] = "<CMD>call VSCodeNotify('leap.findBackward')<CR>",
+        },
+        v = {
+          ["s"] = "<CMD>call VSCodeNotify('leap.findForward')<CR>",
+          ["S"] = "<CMD>call VSCodeNotify('leap.findBackward')<CR>",
         },
       },
     },

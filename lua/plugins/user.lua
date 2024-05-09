@@ -15,13 +15,19 @@ return {
     ---@type CatppuccinOptions
     opts = {
       term_colors = true,
+      integrations = {
+        hop = true,
+      },
     },
   },
+
   { "ThePrimeagen/vim-be-good", event = "VeryLazy" },
+
   {
     "CrystalAlpha358/vim-mcfunction",
     ft = { "mcfunction", "bolt" },
   },
+
   {
     "Shatur/neovim-session-manager",
     dependencies = {
@@ -49,6 +55,7 @@ return {
     cmd = "SessionManager",
     enabled = vim.g.resession_enabled ~= false,
   },
+
   {
     "smoka7/hop.nvim",
     dependencies = {
@@ -66,6 +73,7 @@ return {
     },
     opts = { keys = "etovxqpdygfblzhckisuran" },
   },
+
   {
     "Exafunction/codeium.vim",
     dependencies = {
@@ -91,6 +99,7 @@ return {
     config = function() vim.g.codeium_disable_bindings = 1 end,
     event = "BufEnter",
   },
+
   {
     "theprimeagen/harpoon",
     dependencies = {
@@ -111,6 +120,7 @@ return {
     },
     opts = {},
   },
+
   {
     "Zeioth/compiler.nvim",
     dependencies = {
@@ -126,5 +136,9 @@ return {
         },
       },
     },
+  },
+  {
+    "AstroNvim/astrotheme",
+    lazy = false,
   },
 }
