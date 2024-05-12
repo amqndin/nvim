@@ -3,7 +3,7 @@
 local _guifont = "JetBrainsMonoNL Nerd Font Mono:h13:w60"
 if vim.g.neovide then _guifont = "JetBrainsMono Nerd Font:h12:w0" end
 
-function ToggleTermInsert()
+local function toggle_terminal_vim()
   if vim.bo.buftype == "terminal" then
     if vim.fn.mode() == "n" then
       vim.cmd "startinsert"
@@ -43,6 +43,7 @@ return {
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
         wrap = false, -- sets vim.opt.wrap
         scrolloff = 8,
+        conceallevel = 2,
       },
       g = { -- vim.g.<key>
         -- global options
@@ -68,12 +69,12 @@ return {
       t = {
         ["<A-j>"] = { "<Cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
         ["<F7>"] = false,
-        ["<S-Space>"] = { function() ToggleTermInsert() end, desc = "Toggle terminal insert mode" },
+        ["<S-Space>"] = { function() toggle_terminal_vim() end, desc = "Toggle terminal vim mode" },
       },
       n = {
         ["<A-j>"] = { '<Cmd>execute v:count . "ToggleTerm"<CR>', desc = "Toggle terminal" },
         ["<F7>"] = false,
-        ["<S-Space>"] = { function() ToggleTermInsert() end, desc = "Toggle terminal insert mode" },
+        ["<S-Space>"] = { function() toggle_terminal_vim() end, desc = "Toggle terminal vim mode" },
         ["{"] = { "{zz" },
         ["}"] = { "}zz" },
         ["<Leader>b"] = { desc = "Buffers" },
