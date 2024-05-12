@@ -58,21 +58,24 @@ return {
         ["<C-BS>"] = { "<C-w>", desc = "Delete previous word" },
       },
       i = {
+        ["<A-j>"] = { "<Esc><Cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
+        ["<F7>"] = false,
         ["<C-BS>"] = { "<C-w>", desc = "Delete previous word" },
       },
       x = {
         ["<Leader>p"] = { '"_dP', desc = "Paste text without yanking selection" },
       },
       t = {
-        -- ["<S-Space>"] = { "<c-\\><c-n>", desc = "Enter normal mode" },
+        ["<A-j>"] = { "<Cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
+        ["<F7>"] = false,
         ["<S-Space>"] = { function() ToggleTermInsert() end, desc = "Toggle terminal insert mode" },
       },
       n = {
+        ["<A-j>"] = { '<Cmd>execute v:count . "ToggleTerm"<CR>', desc = "Toggle terminal" },
+        ["<F7>"] = false,
         ["<S-Space>"] = { function() ToggleTermInsert() end, desc = "Toggle terminal insert mode" },
         ["{"] = { "{zz" },
         ["}"] = { "}zz" },
-        ["<c-d>"] = { "<c-d>zz" },
-        ["<c-u>"] = { "<c-u>zz" },
         ["<Leader>b"] = { desc = "Buffers" },
         L = {
           function() require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,

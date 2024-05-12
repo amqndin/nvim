@@ -14,10 +14,10 @@ return {
 
   -- ui / small features
   { import = "astrocommunity.colorscheme.catppuccin" },
-  { import = "astrocommunity.recipes.vscode" },
   { import = "astrocommunity.recipes.neovide" },
 
   -- major feature
+  { import = "astrocommunity.diagnostics.trouble-nvim" },
   { import = "astrocommunity.code-runner.compiler-nvim" },
   { import = "astrocommunity.motion.harpoon" },
   { import = "astrocommunity.motion.hop-nvim" },

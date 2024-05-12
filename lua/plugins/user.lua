@@ -1,7 +1,7 @@
 local utils = require "astroui"
 local get_icon = utils.get_icon
 local hop_mappings = {
-  ["s"] = { "<cmd>HopChar1<CR>", desc = "Hop to a specific character" },
+  ["s"] = { "<cmd>HopChar2<CR>", desc = "Hop to a specific character" },
   ["<S-s>"] = { "<cmd>HopLine<CR>", desc = "Hop to a specific line" },
 }
 local sections = {
