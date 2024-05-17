@@ -3,7 +3,7 @@
 local _guifont = "JetBrainsMonoNL Nerd Font Mono:h13:w60"
 if vim.g.neovide then _guifont = "JetBrainsMono Nerd Font:h12:w0" end
 
-local function toggle_terminal_vim()
+local function switch_terminal_mode()
   if vim.bo.buftype == "terminal" then
     if vim.fn.mode() == "n" then
       vim.cmd "startinsert"
@@ -43,7 +43,6 @@ return {
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
         wrap = false, -- sets vim.opt.wrap
         scrolloff = 8,
-        conceallevel = 2,
       },
       g = { -- vim.g.<key>
         -- global options
@@ -59,22 +58,25 @@ return {
         ["<C-BS>"] = { "<C-w>", desc = "Delete previous word" },
       },
       i = {
+        ["<M-l>"] = { "<ESC>" },
         ["<A-j>"] = { "<Esc><Cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
         ["<F7>"] = false,
         ["<C-BS>"] = { "<C-w>", desc = "Delete previous word" },
       },
       x = {
+        ["<M-l>"] = { "<ESC>" },
         ["<Leader>p"] = { '"_dP', desc = "Paste text without yanking selection" },
       },
       t = {
         ["<A-j>"] = { "<Cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
         ["<F7>"] = false,
-        ["<S-Space>"] = { function() toggle_terminal_vim() end, desc = "Toggle terminal vim mode" },
+        ["<S-Space>"] = { function() switch_terminal_mode() end, desc = "Toggle terminal vim mode" },
+        ["<M-l>"] = { "<ESC>" },
       },
       n = {
-        ["<A-j>"] = { '<Cmd>execute v:count . "ToggleTerm"<CR>', desc = "Toggle terminal" },
+        ["<A-j>"] = { '<Cmd>execute v:count . "ToggleTerm"<CR>', desc = "Switch terminal mode" },
         ["<F7>"] = false,
-        ["<S-Space>"] = { function() toggle_terminal_vim() end, desc = "Toggle terminal vim mode" },
+        ["<S-Space>"] = { function() switch_terminal_mode() end, desc = "Switch terminal mode" },
         ["{"] = { "{zz" },
         ["}"] = { "}zz" },
         ["<Leader>b"] = { desc = "Buffers" },

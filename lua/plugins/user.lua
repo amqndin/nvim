@@ -1,17 +1,19 @@
 local utils = require "astroui"
 local get_icon = utils.get_icon
 local hop_mappings = {
-  ["s"] = { "<cmd>HopChar2<CR>", desc = "Hop to a specific character" },
+  ["s"] = { "<cmd>HopChar1<CR>", desc = "Hop to a specific character" },
   ["<S-s>"] = { "<cmd>HopLine<CR>", desc = "Hop to a specific line" },
 }
 local sections = {
-  s = { desc = get_icon("Session", 1, true) .. "Session" },
+  s = { desc = get_icon("Session", 0, true) .. "Session" },
 }
 
 ---@type LazySpec
 return {
+
   {
     "catppuccin",
+    optional = true,
     ---@type CatppuccinOptions
     opts = {
       term_colors = true,
@@ -85,12 +87,11 @@ return {
         opts = {
           mappings = {
             n = {
-              ["<A-h>"] = { function() return vim.fn["codeium#Chat"]() end, desc = "Codeium Chat" },
+              ["<C-S-h>"] = { function() return vim.fn["codeium#Chat"]() end, desc = "Codeium Chat" },
             },
             i = {
               ["<A-y>"] = { function() return vim.fn["codeium#Accept"]() end, expr = true, desc = "Codeium Accept" },
               ["<C-;>"] = { function() return vim.fn["codeium#Clear"]() end, desc = "Codeium Clear" },
-              ["<A-;>"] = { function() return vim.fn["codeium#Complete"]() end, desc = "Codeium Complete" },
             },
           },
         },
@@ -136,9 +137,5 @@ return {
         },
       },
     },
-  },
-  {
-    "AstroNvim/astrotheme",
-    lazy = false,
   },
 }
