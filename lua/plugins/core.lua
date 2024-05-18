@@ -17,6 +17,12 @@ return {
     end,
   },
   {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      window = { position = "float" },
+    },
+  },
+  {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
       local cmp = require "cmp"
