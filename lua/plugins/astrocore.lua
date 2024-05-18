@@ -1,7 +1,7 @@
 -- AstroCore provides a central place to modify mappings, vim options, autocommands, and more!
 -- Configuration documentation can be found with `:h astrocore`
 local _guifont = "JetBrainsMonoNL Nerd Font Mono:h13:w60"
-if vim.g.neovide then _guifont = "JetBrainsMono Nerd Font:h12:w0" end
+if vim.g.neovide then _guifont = "JetBrainsMono Nerd Font:h12.5:w0" end
 
 local function switch_terminal_mode()
   if vim.bo.buftype == "terminal" then
@@ -45,7 +45,8 @@ return {
         scrolloff = 8,
       },
       g = { -- vim.g.<key>
-        -- global options
+        neovide_padding_right = 0,
+        neovide_padding_left = 0,
       },
       o = {
         guifont = _guifont,
