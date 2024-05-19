@@ -1,3 +1,28 @@
+-- return {
+--   "rebelot/heirline.nvim",
+--   opts = function(_, opts)
+--     local status = require("astroui.status")
+--     opts.statusline = { -- statusline
+--       hl = { fg = "fg", bg = "bg" },
+--       status.component.mode({
+--         mode_text = { padding = { left = 1, right = 1 } },
+--       }), -- add the mode text
+--       status.component.git_branch(),
+--       status.component.file_info(),
+--       status.component.git_diff(),
+--       status.component.diagnostics(),
+--       status.component.fill(),
+--       status.component.cmd_info(),
+--       status.component.fill(),
+--       status.component.lsp(),
+--       status.component.virtual_env(),
+--       status.component.treesitter(),
+--       status.component.nav(),
+--       -- remove the 2nd mode indicator on the right
+--     }
+--   end,
+-- }
+
 return {
   {
     "AstroNvim/astroui",
@@ -5,7 +30,8 @@ return {
     opts = {
       -- add new user interface icon
       icons = {
-        VimIcon = "",
+        -- VimIcon = "",
+        VimIcon = "",
         ScrollText = "",
         GitBranch = "",
         GitAdd = "",
@@ -16,7 +42,7 @@ return {
       status = {
         -- define the separators between each section
         separators = {
-          left = { "", "" }, -- separator for the left side of the statusline
+          left = { "", "" }, -- separator for the left side of the statusline
           right = { " ", "" }, -- separator for the right side of the statusline
           tab = { " ", " " },
         },
@@ -67,7 +93,8 @@ return {
             -- it's a left element, so use the left separator
             separator = "left",
             -- set the color of the surrounding based on the current mode using astronvim.utils.status module
-            color = function() return { main = status.hl.mode_bg(), right = "blank_bg" } end,
+            color = function() return { main = status.hl.mode_bg(), right = status.hl.mode_bg() } end,
+            -- color = function() return { main = status.hl.mode_bg(), right = "blank_bg" } end,
           },
         },
         -- we want an empty space here so we can use the component builder to make a new section with just an empty string
@@ -77,7 +104,8 @@ return {
           -- and the color to the right of the separated out section
           surround = {
             separator = "left",
-            color = { main = "blank_bg", right = "file_info_bg" },
+            color = function() return { main = status.hl.mode_bg(), right = "file_info_bg" } end,
+            -- color = { main = status.hl.mode_bg(), right = "file_info_bg" },
           },
         },
         -- add a section for the currently opened file information
@@ -110,6 +138,7 @@ return {
           lsp_client_names = false,
           surround = { separator = "none", color = "bg" },
         },
+        status.component.cmd_info(),
         -- fill the rest of the statusline
         -- the elements after this will appear on the right of the statusline
         status.component.fill(),
