@@ -36,18 +36,16 @@ return {
     options = {
       opt = { -- vim.opt.<key>
         langmap = "йЙцЦуУкКеЕнНгГшШщЩзЗхХъЪфФыЫвВаАпПрРоОлЛдДжЖэЭяЯчЧсСмМиИтТьЬбБюЮ;qQwWeErRtTyYuUiIoOpP[{]}aAsSdDfFgGhHjJkKlL;:'\\\"zZxXcCvVbBnNmM\\,<.>",
-        -- keymap = "russian-jcukenwin",
-        relativenumber = true, -- sets vim.opt.relativenumber
-        mouse = "",
-        number = true, -- sets vim.opt.number
-        spell = false, -- sets vim.opt.spell
-        signcolumn = "auto", -- sets vim.opt.signcolumn to auto
-        wrap = false, -- sets vim.opt.wrap
+        relativenumber = true,
+        signcolumn = "auto",
         scrolloff = 8,
+        number = true,
+        spell = false,
+        wrap = false,
+        mouse = "",
       },
       g = { -- vim.g.<key>
-        neovide_padding_right = 0,
-        neovide_padding_left = 0,
+        -- vim.g.<key>
       },
       o = {
         guifont = _guifont,
@@ -60,9 +58,9 @@ return {
         ["<C-BS>"] = { "<C-w>", desc = "Delete previous word" },
       },
       i = {
-        ["<M-l>"] = { "<ESC>" },
+        ["<F7>"] = false, -- disable default keymap for toggling terminal
         ["<A-j>"] = { "<Esc><Cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
-        ["<F7>"] = false,
+        ["<M-l>"] = { "<ESC>" },
         ["<C-BS>"] = { "<C-w>", desc = "Delete previous word" },
       },
       x = {
@@ -70,14 +68,14 @@ return {
         ["<Leader>p"] = { '"_dP', desc = "Paste text without yanking selection" },
       },
       t = {
-        ["<A-j>"] = { "<Cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
         ["<F7>"] = false,
-        ["<S-Space>"] = { function() switch_terminal_mode() end, desc = "Toggle terminal vim mode" },
+        ["<A-j>"] = { "<Cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
         ["<M-l>"] = { "<ESC>" },
+        ["<S-Space>"] = { function() switch_terminal_mode() end, desc = "Switch terminal mode" },
       },
       n = {
-        ["<A-j>"] = { '<Cmd>execute v:count . "ToggleTerm"<CR>', desc = "Switch terminal mode" },
         ["<F7>"] = false,
+        ["<A-j>"] = { '<Cmd>execute v:count . "ToggleTerm"<CR>', desc = "Toggle terminal" },
         ["<S-Space>"] = { function() switch_terminal_mode() end, desc = "Switch terminal mode" },
         ["{"] = { "{zz" },
         ["}"] = { "}zz" },

@@ -1,28 +1,3 @@
--- return {
---   "rebelot/heirline.nvim",
---   opts = function(_, opts)
---     local status = require("astroui.status")
---     opts.statusline = { -- statusline
---       hl = { fg = "fg", bg = "bg" },
---       status.component.mode({
---         mode_text = { padding = { left = 1, right = 1 } },
---       }), -- add the mode text
---       status.component.git_branch(),
---       status.component.file_info(),
---       status.component.git_diff(),
---       status.component.diagnostics(),
---       status.component.fill(),
---       status.component.cmd_info(),
---       status.component.fill(),
---       status.component.lsp(),
---       status.component.virtual_env(),
---       status.component.treesitter(),
---       status.component.nav(),
---       -- remove the 2nd mode indicator on the right
---     }
---   end,
--- }
-
 return {
   {
     "AstroNvim/astroui",
@@ -44,7 +19,7 @@ return {
         separators = {
           left = { "", "" }, -- separator for the left side of the statusline
           right = { " ", "" }, -- separator for the right side of the statusline
-          tab = { " ", " " },
+          tab = { "", "" },
         },
         -- add new colors that can be used by heirline
         colors = function(hl)
@@ -133,12 +108,13 @@ return {
         -- fill the rest of the statusline
         -- the elements after this will appear in the middle of the statusline
         status.component.fill(),
+        -- add a component with command info. e.g. whether you're recording macros or not
+        status.component.cmd_info(),
         -- add a component to display if the LSP is loading, disable showing running client names, and use no separator
         status.component.lsp {
           lsp_client_names = false,
           surround = { separator = "none", color = "bg" },
         },
-        status.component.cmd_info(),
         -- fill the rest of the statusline
         -- the elements after this will appear on the right of the statusline
         status.component.fill(),

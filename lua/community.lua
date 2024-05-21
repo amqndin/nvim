@@ -15,8 +15,6 @@ return {
   -- ui / small features
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.recipes.neovide" },
-  -- { import = "astrocommunity.recipes.heirline-mode-text-statusline" },
-  -- { import = "astrocommunity.recipes.heirline-nvchad-statusline" },
 
   -- major feature
   { import = "astrocommunity.diagnostics.trouble-nvim" },

@@ -12,14 +12,7 @@ local sections = {
 return {
   {
     "catppuccin",
-    optional = true,
-    ---@type CatppuccinOptions
-    opts = {
-      term_colors = true,
-      integrations = {
-        hop = true,
-      },
-    },
+    opts = { term_colors = true },
   },
   { "ThePrimeagen/vim-be-good", event = "VeryLazy" },
   {
