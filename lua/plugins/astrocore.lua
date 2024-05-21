@@ -33,19 +33,17 @@ return {
       underline = true,
     },
     -- vim options can be configured here
-    options = {
-      opt = { -- vim.opt.<key>
+    options = { -- vim.<key>
+      opt = {
         langmap = "йЙцЦуУкКеЕнНгГшШщЩзЗхХъЪфФыЫвВаАпПрРоОлЛдДжЖэЭяЯчЧсСмМиИтТьЬбБюЮ;qQwWeErRtTyYuUiIoOpP[{]}aAsSdDfFgGhHjJkKlL;:'\\\"zZxXcCvVbBnNmM\\,<.>",
         relativenumber = true,
         signcolumn = "auto",
         scrolloff = 8,
+        cmdheight = 1,
         number = true,
         spell = false,
         wrap = false,
         mouse = "",
-      },
-      g = { -- vim.g.<key>
-        -- vim.g.<key>
       },
       o = {
         guifont = _guifont,
@@ -56,6 +54,9 @@ return {
     mappings = {
       c = {
         ["<C-BS>"] = { "<C-w>", desc = "Delete previous word" },
+      },
+      o = {
+        ["<M-l>"] = { "<ESC>" },
       },
       i = {
         ["<F7>"] = false, -- disable default keymap for toggling terminal
