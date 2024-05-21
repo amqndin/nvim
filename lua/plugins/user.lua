@@ -105,20 +105,4 @@ return {
     },
     opts = {},
   },
-  {
-    "Zeioth/compiler.nvim",
-    dependencies = {
-      {
-        "astronvim/astrocore",
-        ---@type AstroCoreOpts
-        opts = {
-          mappings = {
-            n = {
-              ["<Leader>r"] = { "<cmd>CompilerOpen<cr>", desc = "Compile" },
-            },
-          },
-        },
-      },
-    },
-  },
 }
