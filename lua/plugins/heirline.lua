@@ -69,7 +69,6 @@ return {
             separator = "left",
             -- set the color of the surrounding based on the current mode using astronvim.utils.status module
             color = function() return { main = status.hl.mode_bg(), right = status.hl.mode_bg() } end,
-            -- color = function() return { main = status.hl.mode_bg(), right = "blank_bg" } end,
           },
         },
         -- we want an empty space here so we can use the component builder to make a new section with just an empty string
@@ -80,13 +79,12 @@ return {
           surround = {
             separator = "left",
             color = function() return { main = status.hl.mode_bg(), right = "file_info_bg" } end,
-            -- color = { main = status.hl.mode_bg(), right = "file_info_bg" },
           },
         },
         -- add a section for the currently opened file information
         status.component.file_info {
           -- enable the file_icon and disable the highlighting based on filetype
-          filename = { fallback = "Empty" },
+          filename = { fallback = "  Empty" },
           -- disable some of the info
           filetype = false,
           file_read_only = false,
