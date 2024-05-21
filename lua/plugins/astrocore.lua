@@ -38,6 +38,7 @@ return {
         langmap = "йЙцЦуУкКеЕнНгГшШщЩзЗхХъЪфФыЫвВаАпПрРоОлЛдДжЖэЭяЯчЧсСмМиИтТьЬбБюЮ;qQwWeErRtTyYuUiIoOpP[{]}aAsSdDfFgGhHjJkKlL;:'\\\"zZxXcCvVbBnNmM\\,<.>",
         relativenumber = true,
         signcolumn = "auto",
+        sidescrolloff = 10,
         scrolloff = 8,
         cmdheight = 1,
         number = true,
