@@ -33,7 +33,7 @@ return {
     },
     status = {
       separators = {
-        tab = { left = " ", right = " " },
+        tab = { left = "", right = "" },
       },
     },
   },

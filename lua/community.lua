@@ -6,17 +6,15 @@
 return {
   "AstroNvim/astrocommunity",
   -- { dir = "D:/git repos/astrocommunity" },
-  --
+
   -- languages support
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.go" },
-  -- { import = "astrocommunity.pack.python" },
+  { import = "astrocommunity.pack.python" },
 
-  -- ui / small features
+  -- features
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.recipes.neovide" },
-
-  -- major feature
   { import = "astrocommunity.diagnostics.trouble-nvim" },
   { import = "astrocommunity.editing-support.undotree" },
   { import = "astrocommunity.code-runner.compiler-nvim" },
