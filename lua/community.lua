@@ -17,6 +17,7 @@ return {
   { import = "astrocommunity.recipes.neovide" },
   { import = "astrocommunity.diagnostics.trouble-nvim" },
   { import = "astrocommunity.editing-support.undotree" },
+  { import = "astrocommunity.editing-support.mini-splitjoin" },
   { import = "astrocommunity.motion.harpoon" },
   { import = "astrocommunity.motion.hop-nvim" },
 }
