@@ -14,7 +14,7 @@ return {
     "catppuccin",
     opts = { term_colors = true },
   },
-  { "ThePrimeagen/vim-be-good", event = "VeryLazy" },
+  { "ThePrimeagen/vim-be-good", cmd = "VimBeGood" },
   {
     "CrystalAlpha358/vim-mcfunction",
     ft = { "mcfunction", "bolt" },
@@ -60,6 +60,7 @@ return {
       },
     },
     opts = { keys = "etovxqpdygfblzhckisuran" },
+    event = "User AstroFile"
   },
   {
     "Exafunction/codeium.vim",
@@ -83,7 +84,7 @@ return {
       },
     },
     config = function() vim.g.codeium_disable_bindings = 1 end,
-    event = "BufEnter",
+    event = "User AstroFile"
   },
   {
     "theprimeagen/harpoon",
@@ -104,5 +105,6 @@ return {
       },
     },
     opts = {},
+    event = "User AstroFile"
   },
 }
