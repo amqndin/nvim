@@ -20,6 +20,28 @@ return {
     ft = { "mcfunction", "bolt" },
   },
   {
+    "andweeb/presence.nvim",
+    event = "VeryLazy",
+    opts = {
+      neovim_image_text = "The One True Text Editor", -- Text displayed when hovered over the Neovim image
+      main_image        = "neovim",                   -- Main image display (either "neovim" or "file")
+      blacklist         = { "antbot" },               -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
+      file_assets       = {
+        jmc = { "JMC", "https://raw.githubusercontent.com/WingedSeal/jmc/webpage/src/assets/image/jmc_icon192.png" },
+        mcfunction = { "MCFunction", "https://cdn.discordapp.com/emojis/1142345404403425341.webp?size=96&quality=lossless" },
+      },
+    },
+  },
+  {
+    "echasnovski/mini.splitjoin",
+    keys = {
+      { "gs", mode = { "n", "v" } },
+    },
+    opts = {
+      mappings = { toggle = "gs" },
+    },
+  },
+  {
     "Shatur/neovim-session-manager",
     dependencies = {
       { "stevearc/resession.nvim", enabled = false },
