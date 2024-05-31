@@ -8,15 +8,6 @@ local minecraft_icon = {
 ---@type LazySpec
 return {
   {
-    "numToStr/Comment.nvim",
-    config = function()
-      local ft = require "Comment.ft"
-
-      -- add support for other file types
-      ft.set("mcfunction", "#%s")
-    end,
-  },
-  {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
       window = { position = "float" },

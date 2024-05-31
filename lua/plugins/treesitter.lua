@@ -10,10 +10,10 @@ return {
       -- add more arguments for adding more treesitter parsers
     })
 
-    opts.indent = {
-      enable = true,
-      disable = { "jmc", "javascript" },
-    }
+    -- opts.indent = {
+    --   enable = true,
+    --   -- disable = { "jmc", "javascript" },
+    -- }
 
     vim.treesitter.language.register("javascript", "jmc")
     vim.treesitter.language.register("c", "hjmc")

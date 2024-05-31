@@ -3,6 +3,28 @@
 local _guifont = "JetBrainsMonoNL Nerd Font Mono:h13:w60"
 if vim.g.neovide then _guifont = "JetBrainsMono Nerd Font:h12.5:w0" end
 
+local function move_to_paragraph(direction)
+    local current_line = vim.fn.line('.')
+    local next_empty_line = vim.fn.search('^\\s*$', 'n')
+    local prev_empty_line = vim.fn.search('^\\s*$', 'bn')
+
+    if direction == "next" then
+        -- Move to the next paragraph
+        if current_line > next_empty_line then
+            vim.cmd("norm! G") -- Go to the last line
+        else
+            vim.fn.search('^\\s*$')
+        end
+    elseif direction == "prev" then
+        -- Move to the previous paragraph
+        if current_line < prev_empty_line then
+            vim.cmd("norm! gg") -- Go to the first line
+        else
+            vim.fn.search('^\\s*$', 'b')
+        end
+    end
+end
+
 local function switch_terminal_mode()
   if vim.bo.buftype == "terminal" then
     if vim.fn.mode() == "n" then
@@ -37,14 +59,16 @@ return {
       opt = {
         langmap = "йЙцЦуУкКеЕнНгГшШщЩзЗхХъЪфФыЫвВаАпПрРоОлЛдДжЖэЭяЯчЧсСмМиИтТьЬбБюЮ;qQwWeErRtTyYuUiIoOpP[{]}aAsSdDfFgGhHjJkKlL;:'\\\"zZxXcCvVbBnNmM\\,<.>",
         relativenumber = true,
-        signcolumn = "auto",
+        signcolumn = "yes",
         sidescrolloff = 10,
         scrolloff = 8,
         cmdheight = 1,
         number = true,
         spell = false,
         wrap = false,
-        mouse = "",
+      },
+      g = {
+        neovide_no_idle = true
       },
       o = {
         guifont = _guifont,
@@ -53,6 +77,12 @@ return {
     -- Mappings can be configured through AstroCore as well.
     -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
     mappings = {
+      -- qf = {
+      --   ["<C-j>"] = { "<Cmd>cnext<CR>" },
+      --   ["<C-k>"] = { "<Cmd>cprev<CR>" },
+      --   ["gg"] = { "gg<Cmd>cfirst<CR>" },
+      --   ["G"] = { "G<Cmd>clast<CR>" },
+      -- },
       c = {
         ["<C-BS>"] = { "<C-w>", desc = "Delete previous word" },
       },
@@ -66,6 +96,7 @@ return {
         ["<C-BS>"] = { "<C-w>", desc = "Delete previous word" },
       },
       x = {
+        ["/"] = {'<Esc>/\\%V'},
         ["<M-l>"] = { "<ESC>" },
         ["<Leader>p"] = { '"_dP', desc = "Paste text without yanking selection" },
       },
@@ -79,8 +110,8 @@ return {
         ["<F7>"] = false,
         ["<A-j>"] = { '<Cmd>execute v:count . "ToggleTerm"<CR>', desc = "Toggle terminal" },
         ["<S-Space>"] = { function() switch_terminal_mode() end, desc = "Switch terminal mode" },
-        ["{"] = { "{zz" },
-        ["}"] = { "}zz" },
+        ["{"] = { function() move_to_paragraph("prev") end };
+        ["}"] = { function() move_to_paragraph("next") end };
         ["<Leader>b"] = { desc = "Buffers" },
         L = {
           function() require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
@@ -92,5 +123,37 @@ return {
         },
       },
     },
+    filetypes = {
+      extension = {
+        mcfunction = "mcf",
+        foo = "fooscript",
+        mcmeta = "json",
+        bolt = "bolt",
+        jmc = "jmc",
+        hjmc = "hjmc",
+      },
+      filename = {
+        ["Foofile"] = "fooscript",
+      },
+      pattern = {
+        ["~/%.config/foo/.*"] = "fooscript",
+      },
+    },
+    autocmds = {
+      qflist_keymaps = {
+        {
+          event = { "FileType" },
+          pattern = "qf",
+          desc = "Quickfix Mappings",
+          callback = function()
+            vim.keymap.set("n", "<C-j>", "<Cmd>cnext!<CR>", { buffer = true, silent = true })
+            vim.keymap.set("n", "<C-k>", "<Cmd>cprev!<CR>", { buffer = true, silent = true })
+            vim.keymap.set("n", "l", "<CR>", { buffer = true, silent = true })
+            vim.keymap.set("n", "gg", "<Cmd>cfirst!<CR>", { buffer = true, silent = true })
+            vim.keymap.set("n", "gg", "<Cmd>clast!<CR>", { buffer = true, silent = true })
+          end
+        }
+      }
+    }
   },
 }
