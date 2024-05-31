@@ -90,12 +90,16 @@ return {
         ["/"] = {'<Esc>/\\%V'},
         ["<M-l>"] = { "<ESC>" },
         ["<Leader>p"] = { '"_dP', desc = "Paste text without yanking selection" },
+        ["{"] = { function() move_to_paragraph("prev") end };
+        ["}"] = { function() move_to_paragraph("next") end };
       },
       t = {
         ["<F7>"] = false,
         ["<A-j>"] = { "<Cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
         ["<M-l>"] = { "<ESC>" },
         ["<S-Space>"] = { function() switch_terminal_mode() end, desc = "Switch terminal mode" },
+        ["{"] = { function() move_to_paragraph("prev") end };
+        ["}"] = { function() move_to_paragraph("next") end };
       },
       n = {
         ["<F7>"] = false,
