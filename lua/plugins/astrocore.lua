@@ -5,23 +5,14 @@ if vim.g.neovide then _guifont = "JetBrainsMono Nerd Font:h12.5:w0" end
 
 local function move_to_paragraph(direction)
     local current_line = vim.fn.line('.')
-    local next_empty_line = vim.fn.search('^\\s*$', 'n')
-    local prev_empty_line = vim.fn.search('^\\s*$', 'bn')
+    local search_flags = direction == 'next' and 'n' or 'bn'
+    local next_line = vim.fn.search('^\\s*$', search_flags) or 0
 
-    if direction == "next" then
-        -- Move to the next paragraph
-        if current_line > next_empty_line then
-            vim.cmd("norm! G") -- Go to the last line
-        else
-            vim.fn.search('^\\s*$')
-        end
-    elseif direction == "prev" then
-        -- Move to the previous paragraph
-        if current_line < prev_empty_line then
-            vim.cmd("norm! gg") -- Go to the first line
-        else
-            vim.fn.search('^\\s*$', 'b')
-        end
+    if (direction == 'next' and current_line > next_line) or
+       (direction == 'prev' and current_line < next_line) then
+        vim.cmd('norm! ' .. (direction == 'next' and 'G' or 'gg'))
+    else
+        vim.fn.search('^\\s*$', direction == 'next' and '' or 'b')
     end
 end
 
