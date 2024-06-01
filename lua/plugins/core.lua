@@ -8,10 +8,27 @@ local minecraft_icon = {
 ---@type LazySpec
 return {
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      -- add more things to the ensure_installed table protecting against community packs modifying it
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+        "lua",
+        -- add more arguments for adding more treesitter parsers
+      })
+
+      opts.indent = {
+        enable = true,
+        -- disable = { "jmc", "javascript" },
+      }
+
+      vim.treesitter.language.register("javascript", "jmc")
+      vim.treesitter.language.register("c", "hjmc")
+      vim.treesitter.language.register("python", "bolt")
+    end,
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      window = { position = "float" },
-    },
+    opts = { window = { position = "float" } },
   },
   {
     "hrsh7th/nvim-cmp",
@@ -28,10 +45,7 @@ return {
       return opts
     end,
   },
-  {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    enabled = false,
-  },
+  { "nvim-telescope/telescope-fzf-native.nvim", enabled = false },
   -- customize alpha options
   {
     "goolord/alpha-nvim",
@@ -41,12 +55,6 @@ return {
       local dashboard = require "alpha.themes.dashboard"
       -- customize the dashboard header
       opts.section.header.val = {
-        -- [[                               __                ]],
-        -- [[  ___     ___    ___   __  __ /\_\    ___ ___    ]],
-        -- [[ / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
-        -- [[/\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
-        -- [[\ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
-        -- [[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
         [[                                                                     ]],
         [[       ████ ██████           █████      ██                     ]],
         [[      ███████████             █████                             ]],
