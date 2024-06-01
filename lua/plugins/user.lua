@@ -1,8 +1,3 @@
-local hop_mappings = {
-  ["s"] = { "<cmd>HopChar1<CR>", desc = "Hop to a specific character" },
-  ["<S-s>"] = { "<cmd>HopLine<CR>", desc = "Hop to a specific line" },
-}
-
 ---@type LazySpec
 return {
   {
@@ -19,11 +14,14 @@ return {
     event = "VeryLazy",
     opts = {
       neovim_image_text = "The One True Text Editor", -- Text displayed when hovered over the Neovim image
-      main_image        = "neovim",                   -- Main image display (either "neovim" or "file")
-      blacklist         = { "antbot" },               -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
-      file_assets       = {
+      main_image = "neovim", -- Main image display (either "neovim" or "file")
+      blacklist = { "antbot" }, -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
+      file_assets = {
         jmc = { "JMC", "https://raw.githubusercontent.com/WingedSeal/jmc/webpage/src/assets/image/jmc_icon192.png" },
-        mcfunction = { "MCFunction", "https://cdn.discordapp.com/emojis/1142345404403425341.webp?size=96&quality=lossless" },
+        mcfunction = {
+          "MCFunction",
+          "https://cdn.discordapp.com/emojis/1142345404403425341.webp?size=96&quality=lossless",
+        },
       },
     },
   },
@@ -35,24 +33,6 @@ return {
     opts = {
       mappings = { toggle = "gs" },
     },
-  },
-  {
-    "smoka7/hop.nvim",
-    dependencies = {
-      {
-        "AstroNvim/astrocore",
-        ---@type AstroCoreOpts
-        opts = {
-          mappings = {
-            v = hop_mappings,
-            n = hop_mappings,
-            o = hop_mappings,
-          },
-        },
-      },
-    },
-    opts = { keys = "etovxqpdygfblzhckisuran" },
-    event = "User AstroFile"
   },
   {
     "Exafunction/codeium.vim",
@@ -76,6 +56,6 @@ return {
       },
     },
     config = function() vim.g.codeium_disable_bindings = 1 end,
-    event = "User AstroFile"
+    event = "User AstroFile",
   },
 }
