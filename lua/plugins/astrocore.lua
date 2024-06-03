@@ -4,16 +4,15 @@ local _guifont = "JetBrainsMonoNL Nerd Font Mono:h13:w60"
 if vim.g.neovide then _guifont = "JetBrainsMono Nerd Font:h12.5:w0" end
 
 local function move_to_paragraph(direction)
-    local current_line = vim.fn.line('.')
-    local search_flags = direction == 'next' and 'n' or 'bn'
-    local next_line = vim.fn.search('^\\s*$', search_flags) or 0
+  local current_line = vim.fn.line "."
+  local search_flags = direction == "next" and "n" or "bn"
+  local next_line = vim.fn.search("^\\s*$", search_flags) or 0
 
-    if (direction == 'next' and current_line > next_line) or
-       (direction == 'prev' and current_line < next_line) then
-        vim.cmd('norm! ' .. (direction == 'next' and 'G' or 'gg'))
-    else
-        vim.fn.search('^\\s*$', direction == 'next' and '' or 'b')
-    end
+  if (direction == "next" and current_line > next_line) or (direction == "prev" and current_line < next_line) then
+    vim.cmd("norm! " .. (direction == "next" and "G" or "gg"))
+  else
+    vim.fn.search("^\\s*$", direction == "next" and "" or "b")
+  end
 end
 
 local function switch_terminal_mode()
@@ -59,7 +58,7 @@ return {
         wrap = false,
       },
       g = {
-        neovide_no_idle = true
+        neovide_no_idle = true,
       },
       o = {
         guifont = _guifont,
@@ -87,26 +86,26 @@ return {
         ["<C-BS>"] = { "<C-w>", desc = "Delete previous word" },
       },
       x = {
-        ["/"] = {'<Esc>/\\%V'},
+        ["/"] = { "<Esc>/\\%V" },
         ["<M-l>"] = { "<ESC>" },
         ["<Leader>p"] = { '"_dP', desc = "Paste text without yanking selection" },
-        ["{"] = { function() move_to_paragraph("prev") end };
-        ["}"] = { function() move_to_paragraph("next") end };
+        ["{"] = { function() move_to_paragraph "prev" end },
+        ["}"] = { function() move_to_paragraph "next" end },
       },
       t = {
         ["<F7>"] = false,
         ["<A-j>"] = { "<Cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
         ["<M-l>"] = { "<ESC>" },
         ["<S-Space>"] = { function() switch_terminal_mode() end, desc = "Switch terminal mode" },
-        ["{"] = { function() move_to_paragraph("prev") end };
-        ["}"] = { function() move_to_paragraph("next") end };
+        ["{"] = { function() move_to_paragraph "prev" end },
+        ["}"] = { function() move_to_paragraph "next" end },
       },
       n = {
         ["<F7>"] = false,
         ["<A-j>"] = { '<Cmd>execute v:count . "ToggleTerm"<CR>', desc = "Toggle terminal" },
         ["<S-Space>"] = { function() switch_terminal_mode() end, desc = "Switch terminal mode" },
-        ["{"] = { function() move_to_paragraph("prev") end };
-        ["}"] = { function() move_to_paragraph("next") end };
+        ["{"] = { function() move_to_paragraph "prev" end },
+        ["}"] = { function() move_to_paragraph "next" end },
         ["<Leader>b"] = { desc = "Buffers" },
         L = {
           function() require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
@@ -146,9 +145,9 @@ return {
             vim.keymap.set("n", "l", "<CR>", { buffer = true, silent = true })
             vim.keymap.set("n", "gg", "<Cmd>cfirst!<CR>", { buffer = true, silent = true })
             vim.keymap.set("n", "gg", "<Cmd>clast!<CR>", { buffer = true, silent = true })
-          end
-        }
-      }
-    }
+          end,
+        },
+      },
+    },
   },
 }
