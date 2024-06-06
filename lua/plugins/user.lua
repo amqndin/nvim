@@ -58,4 +58,8 @@ return {
     config = function() vim.g.codeium_disable_bindings = 1 end,
     event = "User AstroFile",
   },
+  {
+    "folke/noice.nvim",
+    opts = { lsp = { progress = { enabled = false } } }
+  }
 }
