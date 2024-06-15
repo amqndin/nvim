@@ -8,7 +8,7 @@ local function move_to_paragraph(direction)
   local search_flags = direction == "next" and "n" or "bn"
   local next_line = vim.fn.search("^\\s*$", search_flags) or 0
 
-  if (direction == "next" and current_line > next_line) or (direction == "prev" and current_line < next_line) then
+  if (direction == "next" and current_line >= next_line) or (direction == "prev" and current_line <= next_line) then
     vim.cmd("norm! " .. (direction == "next" and "G" or "gg"))
   else
     vim.fn.search("^\\s*$", direction == "next" and "" or "b")
