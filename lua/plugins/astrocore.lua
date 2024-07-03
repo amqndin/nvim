@@ -52,7 +52,6 @@ return {
         signcolumn = "yes",
         sidescrolloff = 10,
         scrolloff = 8,
-        cmdheight = 1,
         number = true,
         spell = false,
         wrap = false,
