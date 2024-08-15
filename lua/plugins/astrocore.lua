@@ -66,12 +66,6 @@ return {
     -- Mappings can be configured through AstroCore as well.
     -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
     mappings = {
-      -- qf = {
-      --   ["<C-j>"] = { "<Cmd>cnext<CR>" },
-      --   ["<C-k>"] = { "<Cmd>cprev<CR>" },
-      --   ["gg"] = { "gg<Cmd>cfirst<CR>" },
-      --   ["G"] = { "G<Cmd>clast<CR>" },
-      -- },
       c = {
         ["<C-BS>"] = { "<C-w>", desc = "Delete previous word" },
       },
@@ -143,7 +137,7 @@ return {
             vim.keymap.set("n", "<C-k>", "<Cmd>cprev!<CR>", { buffer = true, silent = true })
             vim.keymap.set("n", "l", "<CR>", { buffer = true, silent = true })
             vim.keymap.set("n", "gg", "<Cmd>cfirst!<CR>", { buffer = true, silent = true })
-            vim.keymap.set("n", "gg", "<Cmd>clast!<CR>", { buffer = true, silent = true })
+            vim.keymap.set("n", "G", "<Cmd>clast!<CR>", { buffer = true, silent = true })
           end,
         },
       },
