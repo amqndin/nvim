@@ -74,7 +74,7 @@ return {
       },
       i = {
         ["<F7>"] = false, -- disable default keymap for toggling terminal
-        ["<A-j>"] = { "<Esc><Cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
+        ["<A-j>"] = { "<Esc><Cmd>ToggleTerm direction=float<CR>", desc = "Toggle terminal" },
         ["<M-l>"] = { "<ESC>" },
         ["<C-BS>"] = { "<C-w>", desc = "Delete previous word" },
       },
@@ -87,7 +87,7 @@ return {
       },
       t = {
         ["<F7>"] = false,
-        ["<A-j>"] = { "<Cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
+        ["<A-j>"] = { "<Cmd>ToggleTerm direction=float<CR>", desc = "Toggle terminal" },
         ["<M-l>"] = { "<ESC>" },
         ["<S-Space>"] = { function() switch_terminal_mode() end, desc = "Switch terminal mode" },
         ["{"] = { function() move_to_paragraph "prev" end },
@@ -95,7 +95,7 @@ return {
       },
       n = {
         ["<F7>"] = false,
-        ["<A-j>"] = { '<Cmd>execute v:count . "ToggleTerm"<CR>', desc = "Toggle terminal" },
+        ["<A-j>"] = { '<Cmd>execute v:count . "ToggleTerm direction=float"<CR>', desc = "Toggle terminal" },
         ["<S-Space>"] = { function() switch_terminal_mode() end, desc = "Switch terminal mode" },
         ["{"] = { function() move_to_paragraph "prev" end },
         ["}"] = { function() move_to_paragraph "next" end },

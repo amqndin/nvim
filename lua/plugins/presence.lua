@@ -20,7 +20,7 @@ return {
       show_repository = true, -- Display 'View repository' button linked to repository url, if any
       show_cursor_position = false, -- Display line and column number of cursor's position
       swap_fields = false, -- If enabled, workspace is displayed first
-      swap_icons = false, -- If enabled, editor is displayed on the main image
+      swap_icons = true, -- If enabled, editor is displayed on the main image
       workspace_blacklist = { "antbot" }, -- List of workspace names to hide
     },
     lsp = {
@@ -73,12 +73,6 @@ return {
         icon = "https://example.com/lazy.png",
         tooltip = "lazy.nvim",
         type = 2,
-      },
-      lazygit = {
-        name = "LazyGit",
-        icon = "https://user-images.githubusercontent.com/8456633/174470852-339b5011-5800-4bb9-a628-ff230aa8cd4e.png",
-        tooltip = "LazyGit",
-        type = 4,
       },
     },
   },
