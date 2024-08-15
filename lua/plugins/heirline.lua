@@ -34,6 +34,9 @@ return {
           hl.file_info_bg = get_hlgroup("Visual").bg
           hl.nav_icon_bg = get_hlgroup("String").fg
           hl.nav_fg = hl.nav_icon_bg
+          hl.tabline_bg = get_hlgroup("StatusLine").bg
+          hl.buffer_bg = hl.tabline_bg
+          hl.tab_bg = hl.tabline_bg
           hl.folder_icon_bg = get_hlgroup("Error").fg
           return hl
         end,

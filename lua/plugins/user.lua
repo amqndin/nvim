@@ -36,6 +36,7 @@ return {
   },
   {
     "Exafunction/codeium.vim",
+    enabled = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "hrsh7th/nvim-cmp",
@@ -44,12 +45,9 @@ return {
         ---@type AstroCoreOpts
         opts = {
           mappings = {
-            n = {
-              ["<C-S-h>"] = { function() return vim.fn["codeium#Chat"]() end, desc = "Codeium Chat" },
-            },
             i = {
               ["<A-y>"] = { function() return vim.fn["codeium#Accept"]() end, expr = true, desc = "Codeium Accept" },
-              ["<C-;>"] = { function() return vim.fn["codeium#Clear"]() end, desc = "Codeium Clear" },
+              ["<C-h>"] = { function() return vim.fn["codeium#Clear"]() end, desc = "Codeium Clear" },
             },
           },
         },
@@ -60,6 +58,17 @@ return {
   },
   {
     "folke/noice.nvim",
-    opts = { lsp = { progress = { enabled = false } } }
-  }
+    opts = { lsp = { progress = { enabled = false } } },
+  },
+  {
+    "supermaven-inc/supermaven-nvim",
+    -- enabled = false,
+    opts = {
+      keymaps = {
+        accept_suggestion = "<A-y>",
+        clear_suggestion = "<C-h>",
+        accept_word = "<C-l>",
+      },
+    },
+  },
 }

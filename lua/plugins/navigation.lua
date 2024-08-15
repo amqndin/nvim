@@ -33,7 +33,7 @@ return {
         },
       },
     },
-    event = "BufWritePost",
+    event = "User AstroFile",
     cmd = "SessionManager",
     enabled = vim.g.resession_enabled ~= false,
   },
