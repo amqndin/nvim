@@ -13,9 +13,9 @@ return {
     "andweeb/presence.nvim",
     event = "VeryLazy",
     opts = {
-      neovim_image_text = "The One True Text Editor", -- Text displayed when hovered over the Neovim image
+      neovim_image_text = "In Neovim we trust", -- Text displayed when hovered over the Neovim image
       main_image = "neovim", -- Main image display (either "neovim" or "file")
-      blacklist = { "antbot" }, -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
+      blacklist = { "antbot" }, -- if the current file name, path, or workspace matches rpc is disabled
       file_assets = {
         jmc = { "JMC", "https://raw.githubusercontent.com/WingedSeal/jmc/webpage/src/assets/image/jmc_icon192.png" },
         mcfunction = {
