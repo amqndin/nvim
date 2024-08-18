@@ -13,7 +13,7 @@ return {
     editor = {
       image = nil, -- Image ID or URL in case a custom client id is provided
       client = "neovim", -- vim, neovim, lunarvim, nvchad, astronvim or your application's client id
-      tooltip = "In Neovim we trust", -- Text to display when hovering over the editor's image
+      tooltip = "The Superior Text Editor", -- Text to display when hovering over the editor's image
     },
     display = {
       show_time = true, -- Display start timestamp
