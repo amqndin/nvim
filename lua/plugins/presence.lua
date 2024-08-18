@@ -20,7 +20,7 @@ return {
       show_repository = true, -- Display 'View repository' button linked to repository url, if any
       show_cursor_position = false, -- Display line and column number of cursor's position
       swap_fields = false, -- If enabled, workspace is displayed first
-      swap_icons = true, -- If enabled, editor is displayed on the main image
+      swap_icons = false, -- If enabled, editor is displayed on the main image
       workspace_blacklist = { "antbot" }, -- List of workspace names to hide
     },
     lsp = {
@@ -60,17 +60,16 @@ return {
       -- 0 = language, 1 = file browser, 2 = plugin manager, 3 = lsp manager, 4 = vcs; defaults to language
       jmc = {
         name = "JMC",
-        icon = "https://raw.githubusercontent.com/WingedSeal/jmc/webpage/src/assets/image/jmc_icon192.png",
+        icon = "https://github.com/amqndin/nvim/blob/main/assets/presence/jmc.png?raw=true",
         tooltip = "JMC",
       },
       mcfunction = {
         name = "MCFunction",
-        icon = "https://cdn.discordapp.com/emojis/1142345404403425341.webp?size=96&quality=lossless",
+        icon = "https://github.com/amqndin/nvim/blob/main/assets/presence/mcfunction.png?raw=true",
         tooltip = "MCFunction",
       },
       lazy = {
         name = "Lazy", -- "Managing plugins in Lazy"
-        icon = "https://example.com/lazy.png",
         tooltip = "lazy.nvim",
         type = 2,
       },

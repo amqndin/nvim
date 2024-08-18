@@ -112,7 +112,7 @@ return {
     },
     filetypes = {
       extension = {
-        mcfunction = "mcf",
+        mcfunction = "mcfunction",
         foo = "fooscript",
         mcmeta = "json",
         bolt = "bolt",

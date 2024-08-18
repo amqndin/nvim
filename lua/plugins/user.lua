@@ -7,7 +7,7 @@ return {
   { "ThePrimeagen/vim-be-good", cmd = "VimBeGood" },
   {
     "CrystalAlpha358/vim-mcfunction",
-    ft = { "mcfunction", "bolt" },
+    ft = { "mcfunction" },
   },
   {
     "echasnovski/mini.splitjoin",
