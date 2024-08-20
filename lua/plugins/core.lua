@@ -20,7 +20,7 @@ return {
         { name = "luasnip" },
         { name = "buffer" },
         { name = "path" },
-        { name = "codeium" },
+        { name = "supermaven" },
         { name = "nvim_lsp_signature_help" },
       }
       return opts

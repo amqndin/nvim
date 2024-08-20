@@ -23,5 +23,4 @@ return {
   { import = "astrocommunity.motion.hop-nvim" },
   -- { import = "astrocommunity.recipes.telescope-nvchad-theme" },
   { import = "astrocommunity.completion.supermaven-nvim" },
-  { import = "astrocommunity.completion.codeium-vim" },
 }

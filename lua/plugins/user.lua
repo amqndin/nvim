@@ -19,28 +19,6 @@ return {
     },
   },
   {
-    "Exafunction/codeium.vim",
-    enabled = false,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
-      {
-        "AstroNvim/astrocore",
-        ---@type AstroCoreOpts
-        opts = {
-          mappings = {
-            i = {
-              ["<A-y>"] = { function() return vim.fn["codeium#Accept"]() end, expr = true, desc = "Codeium Accept" },
-              ["<C-h>"] = { function() return vim.fn["codeium#Clear"]() end, desc = "Codeium Clear" },
-            },
-          },
-        },
-      },
-    },
-    config = function() vim.g.codeium_disable_bindings = 1 end,
-    event = "User AstroFile",
-  },
-  {
     "folke/noice.nvim",
     opts = { lsp = { progress = { enabled = false } } },
   },
