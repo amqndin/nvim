@@ -21,6 +21,6 @@ return {
   { import = "astrocommunity.utility.noice-nvim" },
   { import = "astrocommunity.motion.harpoon" },
   { import = "astrocommunity.motion.hop-nvim" },
-  -- { import = "astrocommunity.recipes.telescope-nvchad-theme" },
+  { import = "astrocommunity.recipes.telescope-nvchad-theme" },
   { import = "astrocommunity.completion.supermaven-nvim" },
 }
