@@ -5,18 +5,11 @@ return {
     opts = { term_colors = true },
   },
   { "ThePrimeagen/vim-be-good", cmd = "VimBeGood" },
-  {
-    "CrystalAlpha358/vim-mcfunction",
-    ft = { "mcfunction" },
-  },
+  { "CrystalAlpha358/vim-mcfunction", ft = { "mcfunction" } },
   {
     "echasnovski/mini.splitjoin",
-    keys = {
-      { "gs", mode = { "n", "v" } },
-    },
-    opts = {
-      mappings = { toggle = "gs" },
-    },
+    keys = { { "gs", mode = { "n", "v" } } },
+    opts = { mappings = { toggle = "gs" } },
   },
   {
     "folke/noice.nvim",
@@ -24,7 +17,6 @@ return {
   },
   {
     "supermaven-inc/supermaven-nvim",
-    -- enabled = false,
     opts = {
       keymaps = {
         accept_suggestion = "<A-y>",
