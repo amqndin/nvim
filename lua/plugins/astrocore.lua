@@ -94,6 +94,7 @@ return {
         ["}"] = { function() move_to_paragraph "next" end },
       },
       n = {
+        ["<Leader>um"] = { "<Cmd>RenderMarkdown toggle<CR>", desc = "Toggle markdown render" },
         ["<F7>"] = false,
         ["<A-j>"] = { '<Cmd>execute v:count . "ToggleTerm direction=float"<CR>', desc = "Toggle terminal" },
         ["<S-Space>"] = { function() switch_terminal_mode() end, desc = "Switch terminal mode" },
