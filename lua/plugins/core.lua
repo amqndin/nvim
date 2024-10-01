@@ -12,22 +12,6 @@ return {
     opts = { window = { position = "float" } },
   },
   {
-    "hrsh7th/nvim-cmp",
-    opts = function(_, opts)
-      local cmp = require "cmp"
-      opts.sources = cmp.config.sources {
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "path" },
-        { name = "nvim_lsp_signature_help" },
-      }
-      return opts
-    end,
-  },
-  { "nvim-telescope/telescope-fzf-native.nvim", enabled = false },
-  -- customize alpha options
-  {
     "goolord/alpha-nvim",
     opts = function(_, opts)
       local utils = require "astroui"
