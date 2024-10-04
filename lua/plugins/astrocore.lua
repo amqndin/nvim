@@ -15,16 +15,6 @@ if vim.g.neovide then _guifont = "JetBrainsMono Nerd Font:h12.5:w0" end
 --   end
 -- end
 
-local function switch_terminal_mode()
-  if vim.bo.buftype == "terminal" then
-    if vim.fn.mode() == "n" then
-      vim.cmd "startinsert"
-    else
-      vim.cmd "stopinsert"
-    end
-  end
-end
-
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
@@ -61,54 +51,6 @@ return {
       },
       o = {
         guifont = _guifont,
-      },
-    },
-    -- Mappings can be configured through AstroCore as well.
-    -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
-    mappings = {
-      c = {
-        ["<C-BS>"] = { "<C-w>", desc = "Delete previous word" },
-      },
-      o = {
-        ["<M-l>"] = { "<ESC>" },
-      },
-      i = {
-        ["<F7>"] = false, -- disable default keymap for toggling terminal
-        ["<A-j>"] = { "<Esc><Cmd>ToggleTerm direction=float<CR>", desc = "Toggle terminal" },
-        ["<M-l>"] = { "<ESC>" },
-        ["<C-BS>"] = { "<C-w>", desc = "Delete previous word" },
-      },
-      x = {
-        ["/"] = { "<Esc>/\\%V" },
-        ["<M-l>"] = { "<ESC>" },
-        ["<Leader>p"] = { '"_dP', desc = "Paste text without yanking selection" },
-        ["{"] = { function() move_to_paragraph "prev" end },
-        ["}"] = { function() move_to_paragraph "next" end },
-      },
-      t = {
-        ["<F7>"] = false,
-        ["<A-j>"] = { "<Cmd>ToggleTerm direction=float<CR>", desc = "Toggle terminal" },
-        ["<M-l>"] = { "<ESC>" },
-        ["<S-Space>"] = { function() switch_terminal_mode() end, desc = "Switch terminal mode" },
-        ["{"] = { function() move_to_paragraph "prev" end },
-        ["}"] = { function() move_to_paragraph "next" end },
-      },
-      n = {
-        ["<Leader>um"] = { "<Cmd>RenderMarkdown toggle<CR>", desc = "Toggle markdown render" },
-        ["<F7>"] = false,
-        ["<A-j>"] = { '<Cmd>execute v:count . "ToggleTerm direction=float"<CR>', desc = "Toggle terminal" },
-        ["<S-Space>"] = { function() switch_terminal_mode() end, desc = "Switch terminal mode" },
-        ["{"] = { function() move_to_paragraph "prev" end },
-        ["}"] = { function() move_to_paragraph "next" end },
-        ["<Leader>b"] = { desc = "Buffers" },
-        L = {
-          function() require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
-          desc = "Next buffer",
-        },
-        H = {
-          function() require("astrocore.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
-          desc = "Previous buffer",
-        },
       },
     },
     filetypes = {
