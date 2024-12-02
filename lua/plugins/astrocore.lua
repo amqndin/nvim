@@ -33,6 +33,7 @@ return {
         number = true,
         spell = false,
         wrap = false,
+        mouse = "",
       },
       g = {
         neovide_no_idle = true,

@@ -2,6 +2,17 @@ local function switch_terminal_mode()
   if vim.bo.buftype == "terminal" then vim.cmd(vim.fn.mode() == "n" and "startinsert" or "stopinsert") end
 end
 
+local function paste_inline()
+  local register = vim.fn.getreg "*"
+  local paste_mode = "c"
+  if string.sub(register, -1) == "\n" then
+    register = string.sub(register, 1, -2)
+  else
+    paste_mode = "l"
+  end
+  vim.api.nvim_put({ register }, paste_mode, false, true)
+end
+
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
@@ -36,16 +47,12 @@ return {
     map.n["<S-Space>"] = { function() switch_terminal_mode() end, desc = "Switch terminal mode" }
 
     -- convenience maps
-    map.x["/"] = { "<Esc>/\\%V", desc = "Search within selection" }
-    map.x["<Leader>p"] = { '"_dP', desc = "Paste text without yanking selection" }
+    map.x["g/"] = { "<Esc>/\\%V", desc = "Search within selection" }
+    map.n["<Leader>p"] = { function() paste_inline() end, desc = "Paste inline" }
     map.n["<Leader>um"] = { "<Cmd>RenderMarkdown toggle<CR>", desc = "Toggle markdown render" }
 
     map.i["<C-BS>"] = { "<C-w>", desc = "Delete previous word" }
     map.c["<C-BS>"] = { "<C-w>", desc = "Delete previous word" }
-
-    for _, mode in ipairs { "o", "t", "i", "x" } do
-      map[mode]["<M-l>"] = { "<Esc>" }
-    end
 
     map.x["@"] = {
       function() return ":norm @" .. vim.fn.getcharstr() .. "<cr>" end,
@@ -60,7 +67,7 @@ return {
     map.x[">"] = { ">gv", desc = "Indent line" }
 
     -- add more text objects for "in" and "around"
-    for _, char in ipairs { "_", ".", ":", ",", ";", "|", "/", "\\", "*", "+", "%", "`", "?" } do
+    for _, char in ipairs { "_", ".", ":", ",", ";", "|", "/", "\\", "*", "+", "%", "`", "?", "$" } do
       for _, mode in ipairs { "x", "o" } do
         map[mode]["i" .. char] = {
           string.format(":<C-u>silent! normal! f%sF%slvt%s<CR>", char, char, char),
