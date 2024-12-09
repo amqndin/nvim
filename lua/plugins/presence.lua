@@ -57,6 +57,11 @@ return {
     },
     assets = {
       -- 0 = language, 1 = file browser, 2 = plugin manager, 3 = lsp manager, 4 = vcs; defaults to language
+      ["cmd.exe"] = {
+        name = "in terminal",
+        icon = "",
+        tooltip = "im in the terminal, uwu~",
+      },
       jmc = {
         name = "JMC",
         icon = "https://github.com/amqndin/nvim/blob/main/assets/presence/jmc.png?raw=true",

@@ -2,15 +2,15 @@ local function switch_terminal_mode()
   if vim.bo.buftype == "terminal" then vim.cmd(vim.fn.mode() == "n" and "startinsert" or "stopinsert") end
 end
 
-local function paste_inline()
-  local register = vim.fn.getreg "*"
-  local paste_mode = "c"
-  if string.sub(register, -1) == "\n" then
-    register = string.sub(register, 1, -2)
+local function move_to_paragraph(direction)
+  local current_line = vim.fn.line "."
+  local search_flags = direction == "next" and "n" or "bn"
+  local next_line = vim.fn.search("^\\s*$", search_flags) or 0
+  if (direction == "next" and current_line >= next_line) or (direction == "prev" and current_line <= next_line) then
+    vim.cmd("norm! " .. (direction == "next" and "G" or "gg"))
   else
-    paste_mode = "l"
+    vim.fn.search("^\\s*$", direction == "next" and "" or "b")
   end
-  vim.api.nvim_put({ register }, paste_mode, false, true)
 end
 
 ---@type LazySpec
@@ -48,11 +48,15 @@ return {
 
     -- convenience maps
     map.x["g/"] = { "<Esc>/\\%V", desc = "Search within selection" }
-    map.n["<Leader>p"] = { function() paste_inline() end, desc = "Paste inline" }
     map.n["<Leader>um"] = { "<Cmd>RenderMarkdown toggle<CR>", desc = "Toggle markdown render" }
 
     map.i["<C-BS>"] = { "<C-w>", desc = "Delete previous word" }
     map.c["<C-BS>"] = { "<C-w>", desc = "Delete previous word" }
+
+    for _, mode in ipairs { "n", "x", "v", "o" } do
+      map[mode]["}"] = { function() move_to_paragraph "next" end, desc = "Move to next paragraph" }
+      map[mode]["{"] = { function() move_to_paragraph "prev" end, desc = "Move to previous paragraph" }
+    end
 
     map.x["@"] = {
       function() return ":norm @" .. vim.fn.getcharstr() .. "<cr>" end,
