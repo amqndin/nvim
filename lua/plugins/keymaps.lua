@@ -50,8 +50,9 @@ return {
     map.x["g/"] = { "<Esc>/\\%V", desc = "Search within selection" }
     map.n["<Leader>um"] = { "<Cmd>RenderMarkdown toggle<CR>", desc = "Toggle markdown render" }
 
-    map.i["<C-BS>"] = { "<C-w>", desc = "Delete previous word" }
-    map.c["<C-BS>"] = { "<C-w>", desc = "Delete previous word" }
+    map.i["<C-BS>"] = { "<C-w>", desc = "Delete word" }
+    map.c["<C-BS>"] = { "<C-w>", desc = "Delete word" }
+    map.t["<C-BS>"] = { "<C-w>", desc = "Delete word" }
 
     for _, mode in ipairs { "n", "x", "v", "o" } do
       map[mode]["}"] = { function() move_to_paragraph "next" end, desc = "Move to next paragraph" }

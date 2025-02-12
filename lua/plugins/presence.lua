@@ -1,67 +1,73 @@
+local blacklist = {
+  "antbot",
+}
+
+local function is_blacklisted(opts)
+  for _, workspace in ipairs(blacklist) do
+    if string.find(opts.workspace, workspace) then return true end
+  end
+  return false
+end
+
 return {
   "vyfor/cord.nvim",
-  build = ".\\build",
-  event = "VeryLazy",
+  build = ":Cord update",
   opts = {
-    usercmds = true, -- Enable user commands
-    log_level = "error", -- One of 'trace', 'debug', 'info', 'warn', 'error', 'off'
-    timer = {
-      interval = 1500, -- Interval between presence updates in milliseconds (min 500)
-      reset_on_idle = false, -- Reset start timestamp on idle
-      reset_on_change = false, -- Reset start timestamp on presence change
-    },
+    enabled = true,
+    log_level = vim.log.levels.OFF,
     editor = {
-      image = nil, -- Image ID or URL in case a custom client id is provided
-      client = "neovim", -- vim, neovim, lunarvim, nvchad, astronvim or your application's client id
-      tooltip = "The Superior Text Editor", -- Text to display when hovering over the editor's image
+      client = "neovim",
+      tooltip = "The Superior Text Editor",
+      icon = nil,
     },
     display = {
-      show_time = true, -- Display start timestamp
-      show_repository = true, -- Display 'View repository' button linked to repository url, if any
-      show_cursor_position = false, -- Display line and column number of cursor's position
-      swap_fields = false, -- If enabled, workspace is displayed first
-      swap_icons = false, -- If enabled, editor is displayed on the main image
-      workspace_blacklist = { "antbot" }, -- List of workspace names to hide
+      theme = "pastel",
+      swap_fields = false,
+      swap_icons = false,
     },
-    lsp = {
-      show_problem_count = false, -- Display number of diagnostics problems
-      severity = 1, -- 1 = Error, 2 = Warning, 3 = Info, 4 = Hint
-      scope = "workspace", -- buffer or workspace
+    timestamp = {
+      enabled = true,
+      reset_on_idle = false,
+      reset_on_change = false,
     },
     idle = {
-      enable = true, -- Enable idle status
-      show_status = true, -- Display idle status, disable to hide the rich presence on idle
-      timeout = 600000, -- Timeout in milliseconds after which the idle status is set, 0 to display immediately
-      disable_on_focus = false, -- Do not display idle status when neovim is focused
-      text = "Idle", -- Text to display when idle
-      tooltip = "💤", -- Text to display when hovering over the idle image
+      enabled = true,
+      timeout = 300000,
+      show_status = true,
+      ignore_focus = true,
+      unidle_on_focus = true,
+      smart_idle = true,
+      details = "Idling",
+      state = nil,
+      tooltip = "💤",
+      icon = nil,
     },
     text = {
-      viewing = "Viewing {}", -- Text to display when viewing a readonly file
-      editing = "Editing {}", -- Text to display when editing a file
-      file_browser = "Browsing files in {}", -- Text to display when browsing files (Empty string to disable)
-      plugin_manager = "Managing plugins in {}", -- Text to display when managing plugins (Empty string to disable)
-      lsp_manager = "Configuring LSP in {}", -- Text to display when managing LSP servers (Empty string to disable)
-      vcs = "Managing repository in {}", -- Text to display when using Git or Git-related plugin (Empty string to disable)
-      workspace = "In {}", -- Text to display when in a workspace (Empty string to disable)
+      viewing = function(opts) return is_blacklisted(opts) and "Viewing a file" or ("Viewing " .. opts.filename) end,
+      workspace = function(opts)
+        return is_blacklisted(opts) and "In a secret workspace" or ("Working on " .. opts.workspace)
+      end,
+      editing = function(opts) return is_blacklisted(opts) and "Editing a file" or ("Editing " .. opts.filename) end,
+      file_browser = function(opts) return "Browsing files in " .. opts.name end,
+      plugin_manager = function(opts) return "Managing plugins in " .. opts.name end,
+      lsp = function(opts) return "Configuring LSP in " .. opts.name end,
+      docs = function(opts) return "Reading " .. opts.name end,
+      vcs = function(opts) return "Committing changes in " .. opts.name end,
+      notes = function(opts) return "Taking notes in " .. opts.name end,
+      debug = function(opts) return "Debugging in " .. opts.name end,
+      test = function(opts) return "Testing in " .. opts.name end,
+      diagnostics = function(opts) return "Fixing problems in " .. opts.name end,
+      games = function(opts) return "Playing " .. opts.name end,
+      terminal = function(opts) return "Running commands in " .. opts.name end,
+      dashboard = "Home",
     },
     buttons = {
       {
-        label = "View Repository", -- Text displayed on the button
-        url = "git", -- URL where the button leads to ('git' = automatically fetch Git repository URL)
+        label = "View Repository",
+        url = function(opts) return opts.repo_url end,
       },
-      -- {
-      --   label = "Get Neovim today!",
-      --   url = "https://neovim.io",
-      -- },
     },
     assets = {
-      -- 0 = language, 1 = file browser, 2 = plugin manager, 3 = lsp manager, 4 = vcs; defaults to language
-      ["cmd.exe"] = {
-        name = "in terminal",
-        icon = "",
-        tooltip = "im in the terminal, uwu~",
-      },
       jmc = {
         name = "JMC",
         icon = "https://github.com/amqndin/nvim/blob/main/assets/presence/jmc.png?raw=true",
@@ -72,10 +78,27 @@ return {
         icon = "https://github.com/amqndin/nvim/blob/main/assets/presence/mcfunction.png?raw=true",
         tooltip = "MCFunction",
       },
-      lazy = {
-        name = "Lazy", -- "Managing plugins in Lazy"
-        tooltip = "lazy.nvim",
-        type = 2,
+    },
+    variables = nil,
+    plugins = nil,
+    advanced = {
+      plugin = {
+        autocmds = true,
+        cursor_update = "on_hold",
+        match_in_mappings = true,
+      },
+      server = {
+        update = "fetch",
+        pipe_path = nil,
+        executable_path = nil,
+        timeout = 300000,
+      },
+      discord = {
+        reconnect = {
+          enabled = false,
+          interval = 5000,
+          initial = true,
+        },
       },
     },
   },

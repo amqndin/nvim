@@ -29,6 +29,7 @@ return {
         relativenumber = true,
         signcolumn = "yes",
         sidescrolloff = 10,
+        timeout = false,
         scrolloff = 8,
         number = true,
         spell = false,
@@ -49,6 +50,32 @@ return {
         bolt = "bolt",
         jmc = "jmc",
         hjmc = "hjmc",
+      },
+    },
+    autocmds = {
+      mcfunction_commentstring = {
+        {
+          event = "FileType",
+          pattern = "mcfunction",
+          callback = function() vim.opt.commentstring = "# %s" end,
+        },
+      },
+      markdown_wrap = {
+        {
+          event = "FileType",
+          pattern = "markdown",
+          callback = function() vim.opt.wrap = true end,
+        },
+      },
+      add_directory_to_zoxide = {
+        {
+          event = "DirChanged",
+          callback = function(data)
+            local dir = data.file
+            vim.system { "zoxide", "add", dir }
+            print("Added " .. dir .. " to zoxide")
+          end,
+        },
       },
     },
   },

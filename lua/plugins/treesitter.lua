@@ -12,10 +12,10 @@ return {
 
     opts.indent = {
       enable = true,
-      disable = { "jmc", "typescript" },
+      disable = { "jmc", "javascript" },
     }
 
-    vim.treesitter.language.register("typescript", "jmc")
+    vim.treesitter.language.register("javascript", "jmc")
     vim.treesitter.language.register("c", "hjmc")
     vim.treesitter.language.register("python", "bolt")
   end,
