@@ -16,6 +16,10 @@ return {
     opts = { lsp = { progress = { enabled = false } } },
   },
   {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = { render_modes = { "n", "c", "t", "i" } },
+  },
+  {
     "supermaven-inc/supermaven-nvim",
     opts = {
       keymaps = {
@@ -23,6 +27,7 @@ return {
         clear_suggestion = "<C-h>",
         accept_word = "<C-l>",
       },
+      ignore_filetypes = { "markdown", "neo-tree-popup" },
     },
   },
 }

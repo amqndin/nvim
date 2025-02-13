@@ -35,6 +35,7 @@ return {
         spell = false,
         wrap = false,
         mouse = "",
+        showbreak = "↳ ",
       },
       g = {
         neovide_no_idle = true,
@@ -46,6 +47,7 @@ return {
     filetypes = {
       extension = {
         mcfunction = "mcfunction",
+        svx = "markdown",
         mcmeta = "json",
         bolt = "bolt",
         jmc = "jmc",
@@ -63,8 +65,13 @@ return {
       markdown_wrap = {
         {
           event = "FileType",
-          pattern = "markdown",
-          callback = function() vim.opt.wrap = true end,
+          callback = function()
+            if vim.bo.filetype == "markdown" then
+              vim.opt.wrap = true
+            else
+              vim.opt.wrap = false
+            end
+          end,
         },
       },
       add_directory_to_zoxide = {
