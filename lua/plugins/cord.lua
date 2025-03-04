@@ -21,26 +21,10 @@ return {
       icon = nil,
     },
     display = {
-      theme = "pastel",
+      theme = "default",
+      flavor = "accent",
       swap_fields = false,
       swap_icons = false,
-    },
-    timestamp = {
-      enabled = true,
-      reset_on_idle = false,
-      reset_on_change = false,
-    },
-    idle = {
-      enabled = true,
-      timeout = 300000,
-      show_status = true,
-      ignore_focus = true,
-      unidle_on_focus = true,
-      smart_idle = true,
-      details = "Idling",
-      state = nil,
-      tooltip = "💤",
-      icon = nil,
     },
     text = {
       viewing = function(opts) return is_blacklisted(opts) and "Viewing a file" or ("Viewing " .. opts.filename) end,
@@ -61,12 +45,6 @@ return {
       terminal = function(opts) return "Running commands in " .. opts.name end,
       dashboard = "Home",
     },
-    buttons = {
-      {
-        label = "View Repository",
-        url = function(opts) return opts.repo_url end,
-      },
-    },
     assets = {
       jmc = {
         name = "JMC",
@@ -77,28 +55,6 @@ return {
         name = "MCFunction",
         icon = "https://github.com/amqndin/nvim/blob/main/assets/presence/mcfunction.png?raw=true",
         tooltip = "MCFunction",
-      },
-    },
-    variables = nil,
-    plugins = nil,
-    advanced = {
-      plugin = {
-        autocmds = true,
-        cursor_update = "on_hold",
-        match_in_mappings = true,
-      },
-      server = {
-        update = "fetch",
-        pipe_path = nil,
-        executable_path = nil,
-        timeout = 300000,
-      },
-      discord = {
-        reconnect = {
-          enabled = false,
-          interval = 5000,
-          initial = true,
-        },
       },
     },
   },

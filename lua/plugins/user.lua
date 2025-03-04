@@ -21,6 +21,7 @@ return {
   },
   {
     "supermaven-inc/supermaven-nvim",
+    event = "User AstroFile",
     opts = {
       keymaps = {
         accept_suggestion = "<A-y>",

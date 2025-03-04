@@ -40,13 +40,13 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
-      "spyglassmc_language_server",
+      -- "spyglassmc_language_server",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
-      spyglassmc_language_server = { root_dir = function() return vim.loop.cwd() end },
+      -- spyglassmc_language_server = { root_dir = function() return vim.loop.cwd() end },
     },
     -- customize how language servers are attached
     handlers = {
