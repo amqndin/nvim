@@ -12,10 +12,6 @@ return {
     opts = { mappings = { toggle = "gs" } },
   },
   {
-    "folke/noice.nvim",
-    opts = { lsp = { progress = { enabled = false } } },
-  },
-  {
     "MeanderingProgrammer/render-markdown.nvim",
     opts = { render_modes = { "n", "c", "t", "i" } },
   },

@@ -31,6 +31,7 @@ return {
         sidescrolloff = 10,
         timeout = false,
         scrolloff = 8,
+        cmdheight = 1,
         number = true,
         spell = false,
         wrap = false,

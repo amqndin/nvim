@@ -18,7 +18,6 @@ return {
   { import = "astrocommunity.diagnostics.trouble-nvim" },
   { import = "astrocommunity.editing-support.undotree" },
   { import = "astrocommunity.editing-support.mini-splitjoin" },
-  { import = "astrocommunity.utility.noice-nvim" },
   { import = "astrocommunity.motion.harpoon" },
   { import = "astrocommunity.motion.hop-nvim" },
   { import = "astrocommunity.recipes.telescope-nvchad-theme" },
