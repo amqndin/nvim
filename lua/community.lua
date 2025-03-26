@@ -20,7 +20,6 @@ return {
   { import = "astrocommunity.editing-support.mini-splitjoin" },
   { import = "astrocommunity.motion.harpoon" },
   { import = "astrocommunity.motion.hop-nvim" },
-  { import = "astrocommunity.recipes.telescope-nvchad-theme" },
   { import = "astrocommunity.completion.supermaven-nvim" },
   { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
   { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
