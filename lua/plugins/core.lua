@@ -12,34 +12,6 @@ return {
     opts = { window = { position = "float" } },
   },
   {
-    "goolord/alpha-nvim",
-    opts = function(_, opts)
-      local utils = require "astroui"
-      local get_icon = utils.get_icon
-      local dashboard = require "alpha.themes.dashboard"
-      -- customize the dashboard header
-      opts.section.header.val = {
-        [[                                                                     ]],
-        [[       ████ ██████           █████      ██                     ]],
-        [[      ███████████             █████                             ]],
-        [[      █████████ ███████████████████ ███   ███████████   ]],
-        [[     █████████  ███    █████████████ █████ ██████████████   ]],
-        [[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
-        [[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
-        [[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
-      }
-      dashboard.section.buttons.val = {
-        dashboard.button("LDR n  ", get_icon("FileNew", 2, true) .. "New File  "),
-        dashboard.button("LDR f f", get_icon("Search", 2, true) .. "Find File  "),
-        dashboard.button("LDR f o", get_icon("DefaultFile", 2, true) .. "Recents  "),
-        dashboard.button("LDR f w", get_icon("WordFile", 2, true) .. "Find Word  "),
-        dashboard.button("LDR f '", get_icon("Bookmarks", 2, true) .. "Bookmarks  "),
-        dashboard.button("LDR s l", get_icon("Refresh", 2, true) .. "Last Session  "),
-      }
-      return opts
-    end,
-  },
-  {
     "nvim-tree/nvim-web-devicons",
     opts = {
       override_by_extension = {

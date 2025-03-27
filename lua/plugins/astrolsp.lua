@@ -1,7 +1,5 @@
 -- AstroLSP allows you to customize the features in AstroNvim's LSP configuration engine
 -- Configuration documentation can be found with `:h astrolsp`
--- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
---       as this provides autocomplete and documentation while editing
 
 ---@type LazySpec
 return {
@@ -10,7 +8,6 @@ return {
   opts = {
     -- Configuration table of features provided by AstroLSP
     features = {
-      autoformat = true, -- enable or disable auto formatting on start
       codelens = true, -- enable/disable codelens refresh on start
       inlay_hints = false, -- enable/disable inlay hints on start
       semantic_tokens = true, -- enable/disable semantic token highlighting
@@ -19,13 +16,12 @@ return {
     formatting = {
       -- control auto formatting on save
       format_on_save = {
-        enabled = true, -- enable or disable format on save globally
+        enabled = false, -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
           -- "go",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
           -- "python",
-          "json",
         },
       },
       disabled = { -- disable formatting capabilities for the listed language servers
@@ -92,8 +88,8 @@ return {
           function() require("astrolsp.toggles").buffer_semantic_tokens() end,
           desc = "Toggle LSP semantic highlight (buffer)",
           cond = function(client)
-            ---@diagnostic disable-next-line: return-type-mismatch
-            return client.supports_method "textDocument/semanticTokens/full" and vim.lsp.semantic_tokens
+            ---@diagnostic disable-next-line: missing-parameter
+            return client.supports_method "textDocument/semanticTokens/full" and vim.lsp.semantic_tokens ~= nil
           end,
         },
       },
@@ -101,8 +97,8 @@ return {
     -- A custom `on_attach` function to be run after the default `on_attach` function
     -- takes two parameters `client` and `bufnr`  (`:h lspconfig-setup`)
     -- on_attach = function(client, bufnr)
-    -- this would disable semanticTokensProvider for all clients
-    -- client.server_capabilities.semanticTokensProvider = nil
+      -- this would disable semanticTokensProvider for all clients
+      -- client.server_capabilities.semanticTokensProvider = nil
     -- end,
   },
 }
